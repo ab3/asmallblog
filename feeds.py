@@ -29,7 +29,7 @@ class LatestEntries(Feed):
         return item.tags.all()
 
 
-class LatestComment(Feed):
+class LatestComments(Feed):
     feed_type = feedgenerator.Rss201rev2Feed
 
     title = 'Abeocracy.be'

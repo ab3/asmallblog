@@ -52,7 +52,7 @@ class Comment(Model):
     author = CharField(max_length=80)
     email = EmailField()
     site = URLField(verify_exists=False, blank=True)
-    pud_date = DateTimeField(default=datetime.now())
+    pub_date = DateTimeField(default=datetime.now())
     text = TextField()
     hidden = BooleanField(default=False)
     entry = ForeignKey(Entry)

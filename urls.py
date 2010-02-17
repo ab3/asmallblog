@@ -2,7 +2,8 @@ from django.conf.urls.defaults import *
 from asmallblog import views, feeds
 
 feeds = {
-    'latest': feeds.LatestEntries
+    'entries': feeds.LatestEntries,
+    'comments': feeds.LatestComments,
 }
 
 urlpatterns = patterns('',

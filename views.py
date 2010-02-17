@@ -22,9 +22,6 @@ def entries(request, entries_list, tag=None):
     except (EmptyPage, InvalidPage):
         entries_list = paginator.page(paginator.num_pages)
         
-    # cc = Entry.objects.annotate(Count('comment')).filter(listed=True, pk__in=entries_list.object_list)
-    #comments_count = Entry.objects.filter(listed=True, pk__in=entries_list.object_list).annotate(Count('comment'))
-    # entries_comments = zip(entries_list.object_list, entries_list.object_list)
     return render_to_response('asmallblog/index.html', {'request': request, 'entries_list': entries_list.object_list, 'page': entries_list, 'tag': tag})
 
 
