@@ -27,7 +27,8 @@ class Entry(Model):
     text = TextField(help_text='Use markdown syntax')
     tags = ManyToManyField(Tag, blank=True)
     enable_comments = BooleanField(default=True)
-    listed = BooleanField(default=True, help_text='If enabled, this entries will appear in the entrie overview')
+    listed = BooleanField(default=True,
+        help_text='If enabled, this entries will appear in the entrie overview')
     
     class Meta:
         db_table = 'asb_entries'
@@ -38,7 +39,7 @@ class Entry(Model):
     def __unicode__(self):
         return self.title
     
-    @permalink
+    
     def get_absolute_url(self):
         return ('asb-tag', [self.slug])
     
@@ -50,7 +51,7 @@ class Entry(Model):
 
 class Comment(Model):
     author = CharField(max_length=80)
-    email = EmailField()
+    email = EmailField(blank=True)
     site = URLField(verify_exists=False, blank=True)
     pub_date = DateTimeField(default=datetime.now())
     text = TextField()

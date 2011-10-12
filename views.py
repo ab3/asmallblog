@@ -58,10 +58,14 @@ def entry(request, entry_slug):
     if request.method == 'POST':
         c = Comment(entry=e)
         form = PartialCommentForm(request.POST, instance=c)
+        # Check if the trick field has been set to filter out spam bots.
+        if request.POST['user']:
+            return render_to_response('asmallblog/entry_details.html',
+                {'entry': e, 'comments': comments_list, 'form': form})
         if form.is_valid():
             form.save()
             form = PartialCommentForm()
-            HttpResponseRedirect(reverse('asb-entry', args=(e.slug,)))
+            return HttpResponseRedirect(reverse('asb-entry', args=(e.slug,)))
     else:
         form = PartialCommentForm()
     

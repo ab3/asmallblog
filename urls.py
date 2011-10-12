@@ -2,8 +2,9 @@ from django.conf.urls.defaults import *
 from asmallblog import views, feeds
 
 feeds = {
-    'entries': feeds.LatestEntries,
-    'comments': feeds.LatestComments,
+    #r'entries': feeds.LatestEntries,
+    r'entries': feeds.LatestEntriesByTag,
+    r'comments': feeds.LatestComments,
 }
 
 urlpatterns = patterns('',
@@ -18,5 +19,8 @@ urlpatterns = patterns('',
     url(r'^date/(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/$', views.date, name='asb-date'),
     
     # A Small Blog Feeds
+    #url(r'^feeds/entries/$', feeds.LatestEntries(), name='asb-feeds-entries')
+    #url(r'^feeds/entries/(?P<category>[\w-]+)/$', feeds.LatestEntriesByCategory(), name='asb-feeds-entries')
+    #url(r'^feeds/comments/$', feeds.LatestComments(), name='asb-feeds-comments')
     (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
 )
