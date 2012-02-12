@@ -1,4 +1,4 @@
-from abeocracy.asmallblog.models import Tag, Entry, Comment
+from models import Tag, Entry, Comment
 from django.contrib.admin import ModelAdmin, StackedInline
 from django.contrib import admin
 
